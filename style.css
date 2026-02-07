@@ -14,6 +14,63 @@ body {
 
 
 /* PAGE BASE */
+/* ENVELOPE TEAR */
+.envelope {
+  width: 260px;
+  height: 180px;
+  position: relative;
+  cursor: pointer;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Left & Right halves */
+.env-left,
+.env-right {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background: #fff;
+  top: 0;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.env-left {
+  left: 0;
+  border-radius: 12px 0 0 12px;
+}
+
+.env-right {
+  right: 0;
+  border-radius: 0 12px 12px 0;
+}
+
+/* Heart */
+.env-heart {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  animation: pulse 1.5s infinite;
+  z-index: 5;
+}
+
+/* TORN STATE */
+.envelope.torn .env-left {
+  transform: translateX(-120px) rotate(-15deg);
+  opacity: 0;
+}
+
+.envelope.torn .env-right {
+  transform: translateX(120px) rotate(15deg);
+  opacity: 0;
+}
+
+.envelope.torn .env-heart {
+  animation: none;
+  transform: translateX(-50%) scale(1.4);
+}
+
 .page {
   position: fixed;
   inset: 0;

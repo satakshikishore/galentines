@@ -11,6 +11,19 @@ function sayYes() {
 
   startContinuousHearts();
 }
+// Show envelope first
+document.getElementById("page1").style.display = "flex";
+
+function tearEnvelope() {
+  const env = document.querySelector(".envelope");
+  env.classList.add("torn");
+
+  setTimeout(() => {
+    document.getElementById("page1").style.display = "none";
+    document.getElementById("page2").style.display = "flex";
+  }, 900);
+}
+
 
 /* NO → YES GROWS */
 function noClicked() {
