@@ -311,7 +311,17 @@ button:hover {
   box-shadow: 0 0 25px rgba(255, 77, 109, 0.9);
 
 }
+/* Heart pop */
+.heart-button:hover::after {
+  content: "💖";
+  position: absolute;
 
+  top: -22px;
+  right: -22px;
+
+  font-size: 1.8rem;
+  animation: pop 0.6s ease forwards;
+}
 /* =====================
    CONFETTI
 ===================== */
@@ -353,4 +363,14 @@ button:hover {
 @keyframes fall {
   from { transform: translateY(0); opacity: 1; }
   to { transform: translateY(110vh); opacity: 0; }
+}
+@keyframes pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

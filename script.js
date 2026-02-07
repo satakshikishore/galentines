@@ -89,9 +89,9 @@ function openPage4() {
   page4.style.display = "flex";
 
   // Play audio
-  //const audio = document.getElementById("loveAudio");
-  //audio.currentTime = -1;
-  //audio.play();
+  const audio = document.getElementById("loveAudio");
+  audio.currentTime = -1;
+  audio.play();
 
   // Optional confetti
   startConfetti();
