@@ -35,10 +35,18 @@ function tearEnvelope() {
    YES → PAGE 3 + HEARTS
 -------------------------- */
 function sayYes() {
-  document.getElementById("page2").style.display = "none";
-  document.getElementById("page3").style.display = "flex";
+  const page2 = document.getElementById("page2");
+  const page3 = document.getElementById("page3");
+  const video = document.getElementById("page3Video");
 
-  startContinuousHearts();
+  page2.style.display = "none";
+  page3.style.display = "flex";
+
+  if (video) {
+    video.currentTime = 0;
+    video.volume = 0.7;
+    video.play();
+  }
 }
 
 /* -------------------------
@@ -68,29 +76,27 @@ function openPage4() {
   startConfetti();
 }
 
-/* -------------------------
-   HEART RAIN (PAGE 3)
--------------------------- */
-function startContinuousHearts() {
-  if (confettiInterval) return;
-
-  confettiInterval = setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.textContent = "💗";
-
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 20 + "px";
-    heart.style.animationDuration = Math.random() * 3 + 3 + "s";
-
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 7000);
-  }, 150);
-}
 
 /* -------------------------
    CONFETTI (PAGE 4)
 -------------------------- */
+function openPage4() {
+  // Hide other pages
+  document.getElementById("page3").style.display = "none";
+
+  // Show page 4
+  const page4 = document.getElementById("page4");
+  page4.style.display = "flex";
+
+  // Play audio
+  //const audio = document.getElementById("loveAudio");
+  //audio.currentTime = -1;
+  //audio.play();
+
+  // Optional confetti
+  startConfetti();
+}
+
 function startConfetti() {
   const colors = ['#ff4d6d', '#ff758f', '#ffb3c1', '#ffccd5', '#ffffff'];
 
@@ -101,10 +107,10 @@ function startConfetti() {
 
     confetti.style.left = Math.random() * 100 + "vw";
     confetti.style.color = colors[Math.floor(Math.random() * colors.length)];
-    confetti.style.fontSize = Math.random() * 20 + 10 + "px";
-    confetti.style.animationDuration = Math.random() * 3 + 2 + "s";
+    confetti.style.fontSize = Math.random() * 25 + 15 + "px";
+    confetti.style.animationDuration = Math.random() * 5 + 3 + "s";
 
     document.body.appendChild(confetti);
-    setTimeout(() => confetti.remove(), 5000);
+    setTimeout(() => confetti.remove(), 10000);
   }
 }

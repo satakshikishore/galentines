@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
   font-family: Arial, sans-serif;
+
 }
 
 body {
@@ -11,7 +12,7 @@ body {
 /* CUSTOM FONT */
 @font-face {
   font-family: 'HelloHoney';
-  src: url('HelloHoney.otf') format('opentype');
+  src: url('HelloHoney.otf') format('truetype');
 }
 
 /* =====================
@@ -50,6 +51,16 @@ body {
 /* =====================
    ENVELOPE (PAGE 1)
 ===================== */
+/* ===== PAGE 1 : ENVELOPE ===== */
+.page1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fdd4e7;
+}
+
+/* Envelope container */
 .envelope {
   width: 260px;
   height: 180px;
@@ -58,52 +69,73 @@ body {
   animation: float 3s ease-in-out infinite;
 }
 
-/* Left & Right halves */
+/* Envelope halves */
 .env-left,
 .env-right {
   position: absolute;
   width: 50%;
   height: 100%;
-  background: white;
-  top: 0;
+  background: hsl(327, 78%, 91%);
+  top: 1px;
   transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
 .env-left {
   left: 0;
-  border-radius: 14px 0 0 14px;
+  border-radius: 12px 0 0 12px;
 }
 
 .env-right {
   right: 0;
-  border-radius: 0 14px 14px 0;
+  border-radius: 0 12px 12px 0;
 }
 
-/* Heart seal */
+/* Heart stamp */
 .env-heart {
   position: absolute;
-  top: 65px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 2.2rem;
+  font-size: 9rem;
   animation: pulse 1.5s infinite;
   z-index: 5;
 }
 
-/* TEAR OPEN */
+/* Torn state */
 .envelope.torn .env-left {
-  transform: translateX(-130px) rotate(-18deg);
+  transform: translateX(-140px) rotate(-20deg);
   opacity: 0;
 }
 
 .envelope.torn .env-right {
-  transform: translateX(130px) rotate(18deg);
+  transform: translateX(140px) rotate(20deg);
   opacity: 0;
 }
 
 .envelope.torn .env-heart {
   animation: none;
-  transform: translateX(-50%) scale(1.5);
+  transform: translateX(-50%) scale(1.4);
+}
+
+/* Tap text */
+.tap-text {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #e91e63;
+  font-family: 'HelloHoney';
+  animation: fade 1.5s infinite alternate;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.2); }
+  100% { transform: translateX(-50%) scale(1); }
+}
+
+@keyframes fade {
+  from { opacity: 0.5; }
+  to { opacity: 1; }
 }
 
 /* =====================
@@ -116,12 +148,14 @@ body {
   width: 100vw;
   height: 100vh;
 }
-
-.page2-sticker {
-  width: 320px;
-  animation: float 3s ease-in-out infinite;
-  margin-bottom: -30px;
-}
+.page2-sticker { 
+  display: block; /* Ensures it behaves as a block for centering */
+   width: 320px; 
+   animation: float 3s ease-in-out infinite; /* Centering Logic */ 
+   margin-left: auto; /* These two lines ensure horizontal center */ 
+   margin-right: auto; /* Vertical Placement */ 
+   margin-bottom: -30px; /* Adjust this to bring the text closer or further */
+   }
 
 .question-text {
   font-size: 5.5rem;
@@ -164,44 +198,104 @@ button:hover {
 
 /* =====================
    PAGE 3
-===================== */
+=====================*/
 .page3 {
+  display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
 }
 
-.sticker {
-  width: 420px;
-  animation: popIn 0.8s ease-out forwards;
+/* PAGE 3 VIDEO */
+.page3-video {
+  width: 300px;
+  max-width: 90%;
+  border-radius: 20px;
+  pointer-events: auto;
+  z-index: 5;
+  box-shadow: 0 15px 30px rgba(233, 30, 99, 0.4);
 }
+
+
+/* Title */
+#page3 .yup-text {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: #e91e63;
+  font-family: 'HelloHoney';
+  animation: fade 1.5s infinite alternate;
+}
+
 
 /* =====================
    PAGE 4 (FINAL MESSAGE)
 ===================== */
 #page4 {
+  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
 
+.page4-text {
+  max-width: 900px;
+  padding: 40px;
+}
+
+/* Title */
 #page4 .question-text {
-  font-size: 4.5rem;
+  font-size: 4rem;
   color: #e91e63;
-  font-family: 'HelloHoney';
-  max-width: 90%;
+  margin-bottom: 20px;
+}
+
+/* Main paragraph */
+.page4-para {
+  font-size: 1.3rem;
+  line-height: 1;
+  color: #e91e63;
+  margin-bottom: 30px;
+  font-family: serif;
+
+}
+
+/* Love line */
+.love-line {
+  font-size: 3.2rem;
+  letter-spacing: 2px;
+  text-align: center;
+  color: #e91e63;
   text-shadow: 2px 2px 4px rgba(233, 30, 99, 0.4);
+  font-family: 'HelloHoney', cursive !important;
+
+}
+.emoji {
+  font-family: system-ui, emoji;
+  margin-left: 8px;
+}
+
+
+/* Small note */
+.note {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  margin-top: 15px;
+  color: #e91e63;
+  font-family: serif;
 }
 
 /* HEART BUTTON */
 .heart-button {
   position: absolute;
-  bottom: -30px;
-  left: 550px;
-  width: 100px;
-  height: 100px;
+  bottom: -80px;
+  left: 600px;
+  width: 50px;
+  height: 90px;
   background-color: #f598b7;
   color: white;
   cursor: pointer;
-  z-index: 100;
+  z-index: 20;
   clip-path: path('M75,130 C75,130 145,85 145,45 C145,20 125,5 105,5 C90,5 80,15 75,25 C70,15 60,5 45,5 C25,5 5,20 5,45 C5,85 75,130 75,130 Z');
   display: flex;
   align-items: center;
@@ -214,6 +308,8 @@ button:hover {
 
 .heart-button:hover {
   transform: scale(1.15);
+  box-shadow: 0 0 25px rgba(255, 77, 109, 0.9);
+
 }
 
 /* =====================
