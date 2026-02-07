@@ -201,14 +201,7 @@ button:hover {
   color: white;
   cursor: pointer;
   z-index: 100;
-  clip-path: path(
-    'M75,130 C75,130 145,85 145,45
-     C145,20 125,5 105,5
-     C90,5 80,15 75,25
-     C70,15 60,5 45,5
-     C25,5 5,20 5,45
-     C5,85 75,130 75,130 Z'
-  );
+  clip-path: path('M75,130 C75,130 145,85 145,45 C145,20 125,5 105,5 C90,5 80,15 75,25 C70,15 60,5 45,5 C25,5 5,20 5,45 C5,85 75,130 75,130 Z');
   display: flex;
   align-items: center;
   justify-content: center;
