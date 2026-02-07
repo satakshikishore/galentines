@@ -7,14 +7,49 @@ body {
   margin: 0;
   overflow: hidden;
 }
+
+/* CUSTOM FONT */
 @font-face {
   font-family: 'HelloHoney';
   src: url('HelloHoney.otf') format('opentype');
 }
 
+/* =====================
+   PAGE BASE
+===================== */
+.page {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
 
-/* PAGE BASE */
-/* ENVELOPE TEAR */
+/* SHOW PAGE 1 FIRST */
+#page1 {
+  display: flex;
+}
+
+/* =====================
+   VIDEO BACKGROUND
+===================== */
+.bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.page > *:not(.bg-video) {
+  position: relative;
+  z-index: 2;
+}
+
+/* =====================
+   ENVELOPE (PAGE 1)
+===================== */
 .envelope {
   width: 260px;
   height: 180px;
@@ -29,130 +64,80 @@ body {
   position: absolute;
   width: 50%;
   height: 100%;
-  background: #fff;
+  background: white;
   top: 0;
   transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
 .env-left {
   left: 0;
-  border-radius: 12px 0 0 12px;
+  border-radius: 14px 0 0 14px;
 }
 
 .env-right {
   right: 0;
-  border-radius: 0 12px 12px 0;
+  border-radius: 0 14px 14px 0;
 }
 
-/* Heart */
+/* Heart seal */
 .env-heart {
   position: absolute;
-  top: 70px;
+  top: 65px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 2rem;
+  font-size: 2.2rem;
   animation: pulse 1.5s infinite;
   z-index: 5;
 }
 
-/* TORN STATE */
+/* TEAR OPEN */
 .envelope.torn .env-left {
-  transform: translateX(-120px) rotate(-15deg);
+  transform: translateX(-130px) rotate(-18deg);
   opacity: 0;
 }
 
 .envelope.torn .env-right {
-  transform: translateX(120px) rotate(15deg);
+  transform: translateX(130px) rotate(18deg);
   opacity: 0;
 }
 
 .envelope.torn .env-heart {
   animation: none;
-  transform: translateX(-50%) scale(1.4);
+  transform: translateX(-50%) scale(1.5);
 }
 
-.page {
-  position: fixed;
-  inset: 0;
-  display: none;
+/* =====================
+   PAGE 2 (QUESTION)
+===================== */
+#page2 {
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-/* VIDEO BACKGROUND */
-.bg-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-}
-
-/* KEEP CONTENT ABOVE VIDEO */
-.page > *:not(.bg-video) {
-  position: relative;
-  z-index: 2;
-}
-
-
-#page2 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Vertical center on screen */
-  align-items: center;     /* Horizontal center for all children */
-  background-color: #fdd4e7;
   width: 100vw;
   height: 100vh;
-  gap: 10px;               /* Small default gap between elements */
-}
-.page2-sticker {
-  display: block;        /* Ensures it behaves as a block for centering */
-  width: 320px; 
-  animation: float 3s ease-in-out infinite;
-  
-  /* Centering Logic */
-  margin-left: auto;     /* These two lines ensure horizontal center */
-  margin-right: auto;    
-  
-  /* Vertical Placement */
-  margin-bottom: -30px;  /* Adjust this to bring the text closer or further */
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+.page2-sticker {
+  width: 320px;
+  animation: float 3s ease-in-out infinite;
+  margin-bottom: -30px;
 }
 
 .question-text {
   font-size: 5.5rem;
   color: #e91e63;
   text-align: center;
+  font-family: 'HelloHoney';
   opacity: 0;
   transform: translateY(20px);
   animation: showQuestion 1s ease forwards;
-  animation-delay: 0.2s;
-  font-family: 'HelloHoney';
+}
 
-}
-@keyframes showQuestion {
-  to {
-    opacity:1;
-    transform: translateY(0);
-  }
-}
-#yesBtn {
-  position: relative;
-  z-index: 10;
-  transition: transform 0.3s ease;
-}
 .buttons {
   display: flex;
-  gap: -10px;
   justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: -40px; /* Adjust this number to move it higher (e.g., -60px) */
-  position: relative;
+  gap: 120px;
+  margin-top: -40px;
   z-index: 10;
 }
 
@@ -165,8 +150,6 @@ button {
   color: white;
   cursor: pointer;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
-  margin-right: 90px;
-  margin-left: 90px;
 }
 
 button:hover {
@@ -174,10 +157,15 @@ button:hover {
   box-shadow: 0 10px 25px rgba(233, 30, 99, 0.4);
 }
 
-/* PAGE 3 */
+#yesBtn {
+  position: relative;
+  z-index: 20;
+}
+
+/* =====================
+   PAGE 3
+===================== */
 .page3 {
-  background: #eec1d7;
-  display: none;
   flex-direction: column;
 }
 
@@ -186,93 +174,91 @@ button:hover {
   animation: popIn 0.8s ease-out forwards;
 }
 
-.love-text {
-  font-size: 2.5rem;
-  color: #e91e63;
-  margin-top: 20px;
+/* =====================
+   PAGE 4 (FINAL MESSAGE)
+===================== */
+#page4 {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
-/* PAGE 4 */
-/* HEART BUTTON STYLING*/
+
+#page4 .question-text {
+  font-size: 4.5rem;
+  color: #e91e63;
+  font-family: 'HelloHoney';
+  max-width: 90%;
+  text-shadow: 2px 2px 4px rgba(233, 30, 99, 0.4);
+}
+
+/* HEART BUTTON */
 .heart-button {
   position: absolute;
-  bottom: -30px;
-  left: 550px;
+  bottom: 40px;
   width: 100px;
   height: 100px;
   background-color: #f598b7;
   color: white;
   cursor: pointer;
   z-index: 100;
-  
-  /* Smooth SVG Path for a classic heart shape */
-  clip-path: path('M75,130 C75,130 145,85 145,45 C145,20 125,5 105,5 C90,5 80,15 75,25 C70,15 60,5 45,5 C25,5 5,20 5,45 C5,85 75,130 75,130 Z');
-  
-  /* Centering the text inside the heart */
+  clip-path: path(
+    'M75,130 C75,130 145,85 145,45
+     C145,20 125,5 105,5
+     C90,5 80,15 75,25
+     C70,15 60,5 45,5
+     C25,5 5,20 5,45
+     C5,85 75,130 75,130 Z'
+  );
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding-bottom: 20px; /* Adjusts text to sit in the 'fat' part of the heart */
-  font-family: Arial, sans-serif;
   font-weight: bold;
-  font-size: 0.9rem;
-  
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .heart-button:hover {
   transform: scale(1.15);
-  box-shadow: 0 10px 25px rgba(233, 30, 99, 0.4);
 }
 
-
-/* HEART CONFETTI */
-.heart {
-  position: fixed;
-  top: -100vh;
-  font-size: 24px;
-  animation: fall linear infinite;
-  pointer-events: none;
-  z-index: 5;
-}
-
-/* 1. THE MAIN TITLE (Heading) */
-#page4 .question-text {
-  color: #e91e63;        /* Change this to any color (e.g., #ffffff for white) */
-  font-size: 5rem;       /* Adjust size (larger = 5rem, smaller = 3rem) */
-  font-family: 'HelloHoney', cursive;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(233, 30, 99, 0.4); /* Subtle depth */
-}
-
-/* HEART CONFETTI STYLES */
+/* =====================
+   CONFETTI
+===================== */
+.heart,
 .confetti {
   position: fixed;
-  top: -20px; /* Start just above the screen */
+  top: -20px;
   font-size: 24px;
-  user-select: none;
-  pointer-events: none; /* So you can click through them */
+  pointer-events: none;
   z-index: 999;
   animation: fall linear forwards;
 }
 
-@keyframes fall {
-  0% {
-    transform: translateY(0) rotate(0deg) translateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(110vh) rotate(360deg) translateX(50px);
-    opacity: 0;
-  }
+/* =====================
+   ANIMATIONS
+===================== */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-@keyframes fall {
-  from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(110vh); opacity: 0; }
+@keyframes showQuestion {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes popIn {
   from { transform: scale(0); }
   to { transform: scale(1); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.2); }
+}
+
+@keyframes fall {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(110vh); opacity: 0; }
 }
