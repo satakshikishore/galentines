@@ -194,7 +194,8 @@ button:hover {
 /* HEART BUTTON */
 .heart-button {
   position: absolute;
-  bottom: 40px;
+  bottom: -30px;
+  left: 550px;
   width: 100px;
   height: 100px;
   background-color: #f598b7;
@@ -205,7 +206,9 @@ button:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   font-weight: bold;
+  font-size: 0.9rem;
   transition: transform 0.3s ease;
 }
 
